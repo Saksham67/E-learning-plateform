@@ -62,12 +62,27 @@ def login():
 
     return render_template('login.html')
 
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
-    if 'user_id' not in session:
-        flash('Please log in to access the dashboard.', 'warning')
-        return redirect(url_for('login'))
-    return f"Welcome, {session['username']}! This is your dashboard."
+    conn = sqlite3.connect('college_app.db')
+    cursor = conn.cursor()
+
+    # Fetch all courses
+    cursor.execute("SELECT * FROM courses")
+    courses = cursor.fetchall()
+
+    materials = []
+    if request.method == 'POST':
+        course_id = request.form['course_id']
+
+        # Fetch materials for the selected course
+        cursor.execute("SELECT * FROM study_materials WHERE course_id = ?", (course_id,))
+        materials = cursor.fetchall()
+
+    conn.close()
+
+    return render_template('dashboard.html', courses=courses, materials=materials, username=session['username'])
+
 
 @app.route('/logout')
 def logout():
