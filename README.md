@@ -22,7 +22,7 @@ An online learning platform built using **Flask** to facilitate seamless teachin
 | HTML/CSS     | Frontend design                   |
 | JavaScript   | Client-side interactions          |
 | Bootstrap    | Responsive UI components          |
-| SQLite/MySQL | Database (configurable)           |
+| SQLite       | Database (configurable)           |
 | Jinja2       | Templating engine for Flask       |
 
 
