@@ -27,6 +27,3 @@ An online learning platform built using **Flask** to facilitate seamless teachin
 
 
 
-## 📁 Project Structure
-
-
